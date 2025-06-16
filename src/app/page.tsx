@@ -35,7 +35,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
-      <header className="bg-transparent">
+      <header className="bg-transparent relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
@@ -123,92 +123,131 @@ export default function HomePage() {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex items-center justify-center pt-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-8">
-          <div className="text-center">
-            {/* Main Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            >
-              Transform Your Data Into Insights
-            </motion.h1>
+      <main className="relative">
+        {/* Hero Section */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+          >
+            Transform Your Data Into Insights
+          </motion.h1>
 
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg text-gray-600 mb-6 leading-relaxed"
-            >
-              Connect your data sources, ask questions in natural language, and get<br />
-              powerful visualizations instantly.
-            </motion.p>
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto"
+          >
+            Connect your data sources, ask questions in natural language, and get
+            powerful visualizations instantly.
+          </motion.p>
 
-            {/* Search Input - White theme */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6"
-            >
-              <form onSubmit={handlePromptSubmit} className="relative max-w-2xl mx-auto">
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="How can Balanced Card help you today?"
-                    className="w-full px-6 py-4 text-base bg-white text-gray-900 border border-gray-300 focus:outline-none main-input-glow placeholder-gray-500 shadow-lg transition-all duration-200 rounded-xl hover:border-gray-400"
-                  />
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                    {query.trim() && (
-                      <motion.button
-                        type="submit"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                        title="Send"
-                      >
-                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                      </motion.button>
-                    )}
-                  </div>
+          {/* Search Input - White theme */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8"
+          >
+            <form onSubmit={handlePromptSubmit} className="relative max-w-2xl mx-auto">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="How can Balanced Card help you today?"
+                  className="w-full px-6 py-4 text-lg bg-white text-gray-900 border border-gray-300 focus:outline-none main-input-glow placeholder-gray-500 shadow-xl transition-all duration-200 rounded-xl hover:border-gray-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+                />
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                  {query.trim() && (
+                    <motion.button
+                      type="submit"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      title="Send"
+                    >
+                      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </motion.button>
+                  )}
                 </div>
-              </form>
-            </motion.div>
+              </div>
+            </form>
+          </motion.div>
 
-            {/* Prompt Suggestions */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center justify-center gap-2"
-            >
-              {promptSuggestions.map((suggestion, index) => (
-                <motion.button
-                  key={suggestion}
-                  onClick={() => handlePromptSuggestionClick(suggestion)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                  className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors border border-gray-200 text-sm"
-                >
-                  {suggestion}
-                </motion.button>
-              ))}
-            </motion.div>
-          </div>
+          {/* Prompt Suggestions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center gap-3 mb-16"
+          >
+            {promptSuggestions.map((suggestion, index) => (
+              <motion.button
+                key={suggestion}
+                onClick={() => handlePromptSuggestionClick(suggestion)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors border border-gray-200 text-sm font-medium hover:border-gray-300"
+              >
+                {suggestion}
+              </motion.button>
+            ))}
+          </motion.div>
         </div>
+
+        {/* Features Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: "🔗",
+                title: "Connect Any Data Source",
+                description: "Seamlessly integrate with databases, APIs, files, and cloud platforms"
+              },
+              {
+                icon: "🤖",
+                title: "AI-Powered Analysis",
+                description: "Ask questions in natural language and get instant insights"
+              },
+              {
+                icon: "📊",
+                title: "Beautiful Visualizations",
+                description: "Create stunning charts and dashboards with zero coding required"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                className="text-center p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow"
+              >
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </main>
 
       {/* Login Modal */}
